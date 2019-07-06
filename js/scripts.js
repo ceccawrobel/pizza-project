@@ -33,20 +33,26 @@ $(document).ready(function() {
     var pizzaSize = $("#pizzaSize").val();
     var classicToppings = [];
     var specialToppings = [];
-    var pizzaSelection = new Pizza(pizzaSize, classicToppings, specialToppings);
+    var newPizza = new Pizza(pizzaSize, classicToppings, specialToppings);
 
     $("input:checkbox[name=classic-topping]:checked").each(function() {
       var classicTopping = $(this).val();
-      pizzaSelection.classicToppings.push(classicTopping);
+      newPizza.classicToppings.push(classicTopping);
     })
+
     $("input:checkbox[name=special-topping]:checked").each(function() {
       var specialTopping = $(this).val();
-      pizzaSelection.specialToppings.push(specialTopping);
+      newPizza.specialToppings.push(specialTopping);
     })
-    console.log(pizzaSelection.classicToppings);
-    console.log(pizzaSelection.specialToppings);
-    console.log(pizzaSelection);
+
+    console.log(newPizza.classicToppings);
+    console.log(newPizza.specialToppings);
+    console.log(newPizza);
+
+    $("#pizzaOrder").show();
+    $("#pizzaList").append("<li>" + newPizza.pizzaSize + " pizza with " + newPizza.classicToppings + newPizza.specialToppings + "</li>");
     $("#selection").trigger("reset");
   })
+
 })
 //upon submit of #order, create new object/instance of Order with new inputs for name and number along with Pizza objects/instances; show #confirmation div with thank-you message along with properties of order object

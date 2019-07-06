@@ -10,6 +10,10 @@ div {
   text-align: center;
 }
 
+div#pizzaOrder {
+  text-align: left;
+}
+
 .menu {
   font-family: cursive;
 }
