@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-    <title>Pizza Project</title>
-  </head>
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <title>Pizza Project</title>
+</head>
   <body>
     <div class="container">
       <h2>Pizza Ambrosia</h2>
@@ -18,6 +15,22 @@
     <div class="container" id="pizzaSelection">
       <p>Choose your pizza</p>
       <form id="selection">
+        <select id="pizzaSize">
+          <option value="small">small - 12"</option>
+          <option value="large">large - 18"</option>
+        </select>
+        <br>
+        <p class="menu">classic toppings<br>
+        <input type="checkbox" name="classic-topping" value="olive">black olives<br>
+        <input type="checkbox" name="classic-topping" value="mushroom">mushrooms<br>
+        <input type="checkbox" name="classic-topping" value="pepper">bell peppers<br>
+        <input type="checkbox" name="classic-topping" value="onion">onions<br>
+        </p>
+        <p class="menu">special toppings<br>
+        <input type="checkbox" name="special-topping" value="artichoke">artichoke hearts<br>
+        <input type="checkbox" name="special-topping" value="pickledPepper">pickled peppers<br>
+        </p>
+        <button type="submit" class="btn-warning">how much?</button>
       </form>
     </div>
     <div class="container" id="pizzaOrder">

@@ -5,3 +5,11 @@
 #confirmation {
   display: none;
 }
+
+div {
+  text-align: center;
+}
+
+.menu {
+  font-family: cursive;
+}
