@@ -1,9 +1,10 @@
 //business logic
 //set up pizza constructor w/ size property, classic toppings array, special toppings array
-function Pizza(size, classicToppings, specialToppings) {
+function Pizza(size, classicToppings, specialToppings, price) {
   this.size = size;
   this.classicToppings = [];
   this.specialToppings = [];
+  this.price = price;
 }
 //set up order constructor w/ name property, number property, pizza property
 function Order(name, number, pizza) {
@@ -12,15 +13,18 @@ function Order(name, number, pizza) {
   this.pizza = [];
 }
 
-//set up prototype on pizza constructor to calculate price based on size property and number of items in each array (15 or 18 + .25*classic or .50*classic [or, if lg, *2?]+ .50*special or 1*special[or, if lg, *2?])
-Pizza.prototype.price = function() {
-  var pizzaPrice = 0
+//set up prototype on pizza constructor to calculate price based on size property and number of items in each array (15 or 18 + .25*classic or .50*classic [or, if lg, *2?]+ .50*special or 1*special[or, if lg, *2?]) **getting the below to work w/o error messages, but can't figure out how to add in the array length to the price, with or w/o parseInt, same line or second line, etc.
+Pizza.prototype.priceCalc = function() {
+  var thePrice = 0
   if (this.size === "small") {
-    pizzaPrice += 15;
+    thePrice += 15;
+    // thePrice += this.classicToppings.length;
   } else {
-    pizzaPrice += 20;
+    thePrice += 20
+    // thePrice += this.classicToppings.length;
   }
-  console.log(pizzaPrice);
+
+  return thePrice
 }
 
 //user interface logic
@@ -30,27 +34,32 @@ $(document).ready(function() {
   $("#selection").submit(function(event) {
     event.preventDefault();
     console.log("selections submitted");
-    var pizzaSize = $("#pizzaSize").val();
-    var classicToppings = [];
-    var specialToppings = [];
-    var newPizza = new Pizza(pizzaSize, classicToppings, specialToppings);
+    var newSize = $("#pizzaSize").val();
+    var newClassicToppings = [];
+    var newSpecialToppings = [];
+    var newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings);
+    var newPrice = newPizza.priceCalc();
+    newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
 
     $("input:checkbox[name=classic-topping]:checked").each(function() {
-      var classicTopping = $(this).val();
-      newPizza.classicToppings.push(classicTopping);
+      var newClassicTopping = $(this).val();
+      newPizza.classicToppings.push(newClassicTopping);
     })
 
     $("input:checkbox[name=special-topping]:checked").each(function() {
-      var specialTopping = $(this).val();
-      newPizza.specialToppings.push(specialTopping);
+      var newSpecialTopping = $(this).val();
+      newPizza.specialToppings.push(newSpecialTopping);
     })
+
 
     console.log(newPizza.classicToppings);
     console.log(newPizza.specialToppings);
     console.log(newPizza);
+    console.log(newPizza.classicToppings.length);
+    console.log(newPrice);
 
     $("#pizzaOrder").show();
-    $("#pizzaList").append("<li>" + newPizza.pizzaSize + " pizza with " + newPizza.classicToppings + newPizza.specialToppings + "</li>");
+    $("#pizzaList").append("<li>" + newPizza.size + " pizza with " + newPizza.classicToppings + ", " + newPizza.specialToppings + " is $" + newPizza.price + ".00 </li>");
     $("#selection").trigger("reset");
   })
 
