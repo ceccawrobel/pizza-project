@@ -18,13 +18,11 @@ Pizza.prototype.priceCalc = function() {
   var thePrice = 0
   if (this.size === "small") {
     thePrice += 15;
-    // thePrice += this.classicToppings.length;
   } else {
-    thePrice += 20
-    // thePrice += this.classicToppings.length;
+    thePrice += 20;
   }
-
-  return thePrice
+  thePrice += this.classicToppings.length ;
+  return thePrice;
 }
 
 //user interface logic
@@ -37,9 +35,9 @@ $(document).ready(function() {
     var newSize = $("#pizzaSize").val();
     var newClassicToppings = [];
     var newSpecialToppings = [];
-    var newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings);
-    var newPrice = newPizza.priceCalc();
-    newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
+    var newPrice = 0;
+    var newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
+    newPrice = newPrice + newPizza.priceCalc();
 
     $("input:checkbox[name=classic-topping]:checked").each(function() {
       var newClassicTopping = $(this).val();
@@ -51,15 +49,32 @@ $(document).ready(function() {
       newPizza.specialToppings.push(newSpecialTopping);
     })
 
-
+    // newPrice = newPizza.priceCalc();
+    // // newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
     console.log(newPizza.classicToppings);
     console.log(newPizza.specialToppings);
     console.log(newPizza);
     console.log(newPizza.classicToppings.length);
     console.log(newPrice);
+    console.log(newPizza.price)
+
+    var toppingsListHtmlTags = []
+
+    newPizza.classicToppings.forEach(function(classicTopping) {
+      toppingsListHtmlTags.push("<li>" + classicTopping + "</li>");
+    });
+    newPizza.specialToppings.forEach(function(specialTopping) {
+      toppingsListHtmlTags.push("<li>" + specialTopping + "</li>");
+    });
+
+    console.log(toppingsListHtmlTags);
 
     $("#pizzaOrder").show();
-    $("#pizzaList").append("<li>" + newPizza.size + " pizza with " + newPizza.classicToppings + ", " + newPizza.specialToppings + " is $" + newPizza.price + ".00 </li>");
+    $("#pizzaList").append("<li>" + newPizza.size + " pizza with <ul id='toppingsList'></ul><p>$" + newPizza.price + ".00 </li>");
+    toppingsListHtmlTags.forEach(function(toppingListHtmlTag) {
+      $("#toppingsList").append(toppingListHtmlTag);
+    })
+
     $("#selection").trigger("reset");
   })
 
