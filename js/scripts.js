@@ -49,8 +49,8 @@ $(document).ready(function() {
       newPizza.specialToppings.push(newSpecialTopping);
     })
 
-    // newPrice = newPizza.priceCalc();
-    // // newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
+    newPrice = newPizza.priceCalc();
+    newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
     console.log(newPizza.classicToppings);
     console.log(newPizza.specialToppings);
     console.log(newPizza);
