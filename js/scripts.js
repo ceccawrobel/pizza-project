@@ -21,7 +21,8 @@ Pizza.prototype.priceCalc = function() {
   } else {
     thePrice += 20;
   }
-  thePrice += this.classicToppings.length ;
+  thePrice += this.classicToppings.length;
+  thePrice += this.specialToppings.length;
   return thePrice;
 }
 
@@ -40,17 +41,25 @@ $(document).ready(function() {
     newPrice = newPrice + newPizza.priceCalc();
 
     $("input:checkbox[name=classic-topping]:checked").each(function() {
-      var newClassicTopping = $(this).val();
+      newClassicTopping = $(this).val();
       newPizza.classicToppings.push(newClassicTopping);
     })
 
     $("input:checkbox[name=special-topping]:checked").each(function() {
-      var newSpecialTopping = $(this).val();
+      newSpecialTopping = $(this).val();
       newPizza.specialToppings.push(newSpecialTopping);
     })
 
     newPrice = newPizza.priceCalc();
-    newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
+    newClassicToppings = newPizza.classicToppings;
+    newSpecialToppings = newPizza.specialToppings;
+
+    newPizza = {
+      size: newSize,
+      classicToppings: newClassicToppings,
+      specialToppings: newSpecialToppings,
+      price: newPrice
+    };
     console.log(newPizza.classicToppings);
     console.log(newPizza.specialToppings);
     console.log(newPizza);
