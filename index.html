@@ -9,7 +9,7 @@
   <title>Pizza Project</title>
 </head>
   <body>
-    <div class="container">
+    <div class="container" id="headings">
       <h2>Pizza Ambrosia</h2>
       <h4>FOOD OF THE GODS</h4>
     </div>
@@ -36,15 +36,16 @@
       </form>
     </div>
     <div class="container" id="pizzaOrder">
-      <p id="pizzaList">Here are the pizzas you chose: <br>
-        <!-- <ul id="pizzaList">
-        </ul> -->
+      <p id="pizzaList">Here are the pizzas you chose: <br><br>
       </p>
-      <form id="order">
-        <!-- <label id="name">Name for your order</label>
-        <input id="name" type="text">
-        <button type="submit" class="btn-warning">order this!</button> -->
-      </form>
+      <div id="order">
+        <form>
+          <span id="orderSpan"></span><br>
+          <label id="name">Name for your order</label>
+          <input id="name" type="text" required>
+          <button type="submit" class="btn-warning">order this!</button>
+        </form>
+      </div>
     </div>
     <div class="container" id="confirmation">
     <p>Thank you for your order!</p>

@@ -29,6 +29,7 @@ Pizza.prototype.priceCalc = function() {
 //user interface logic
 //set up jQuery to accept form with size (req) and toppings; upon submit of #selection: create new object/instance of Pizza with size and topping properties; show #pizzaOrder div and insert text from object into div selection along with new price property based on prototype method; calculate and reveal total for multiple pizzas regardless of quantity; clear selection form so that new pizza objects can be created and added without refreshing page;
 $(document).ready(function() {
+  var allPrices = []
 
   $("#selection").submit(function(event) {
     event.preventDefault();
@@ -60,12 +61,6 @@ $(document).ready(function() {
       specialToppings: newSpecialToppings,
       price: newPrice
     };
-    console.log(newPizza.classicToppings);
-    console.log(newPizza.specialToppings);
-    console.log(newPizza);
-    console.log(newPizza.classicToppings.length);
-    console.log(newPrice);
-    console.log(newPizza.price)
 
     var toppingsListHtmlTags = []
 
@@ -78,12 +73,20 @@ $(document).ready(function() {
 
     console.log(toppingsListHtmlTags);
 
+    allPrices.push(newPizza.price);
+    console.log(allPrices);
+    var totalPrice = 0
+    allPrices.forEach(function(price) {
+      totalPrice += price
+    });
+    console.log(totalPrice);
+
     $("#pizzaOrder").show();
-    $("#pizzaList").append("a " + newPizza.size + " pizza with <ul class='toppingsList'></ul><p>$" + newPizza.price + ".00 <br>");
+    $("#pizzaList").append("<b>a " + newPizza.size + " pizza </b>with <ul class='toppingsList'></ul><p>$" + newPizza.price + ".00 <br>");
     toppingsListHtmlTags.forEach(function(toppingListHtmlTag) {
       $(".toppingsList:last-of-type").append(toppingListHtmlTag);
     })
-
+    $("#orderSpan").text("Your total is $" + totalPrice + ".00");
     $("#selection").trigger("reset");
   })
 
