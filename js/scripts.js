@@ -21,13 +21,15 @@ Pizza.prototype.priceCalc = function() {
   } else {
     thePrice += 20;
   }
-  thePrice += this.classicToppings.length ;
+  thePrice += this.classicToppings.length;
+  thePrice += (this.specialToppings.length * 2);
   return thePrice;
 }
 
 //user interface logic
 //set up jQuery to accept form with size (req) and toppings; upon submit of #selection: create new object/instance of Pizza with size and topping properties; show #pizzaOrder div and insert text from object into div selection along with new price property based on prototype method; calculate and reveal total for multiple pizzas regardless of quantity; clear selection form so that new pizza objects can be created and added without refreshing page;
 $(document).ready(function() {
+  var allPrices = []
 
   $("#selection").submit(function(event) {
     event.preventDefault();
@@ -40,23 +42,25 @@ $(document).ready(function() {
     newPrice = newPrice + newPizza.priceCalc();
 
     $("input:checkbox[name=classic-topping]:checked").each(function() {
-      var newClassicTopping = $(this).val();
+      newClassicTopping = $(this).val();
       newPizza.classicToppings.push(newClassicTopping);
     })
 
     $("input:checkbox[name=special-topping]:checked").each(function() {
-      var newSpecialTopping = $(this).val();
+      newSpecialTopping = $(this).val();
       newPizza.specialToppings.push(newSpecialTopping);
     })
 
-    // newPrice = newPizza.priceCalc();
-    // // newPizza = new Pizza(newSize, newClassicToppings, newSpecialToppings, newPrice);
-    console.log(newPizza.classicToppings);
-    console.log(newPizza.specialToppings);
-    console.log(newPizza);
-    console.log(newPizza.classicToppings.length);
-    console.log(newPrice);
-    console.log(newPizza.price)
+    newPrice = newPizza.priceCalc();
+    newClassicToppings = newPizza.classicToppings;
+    newSpecialToppings = newPizza.specialToppings;
+
+    newPizza = {
+      size: newSize,
+      classicToppings: newClassicToppings,
+      specialToppings: newSpecialToppings,
+      price: newPrice
+    };
 
     var toppingsListHtmlTags = []
 
@@ -69,12 +73,20 @@ $(document).ready(function() {
 
     console.log(toppingsListHtmlTags);
 
-    $("#pizzaOrder").show();
-    $("#pizzaList").append("<li>" + newPizza.size + " pizza with <ul id='toppingsList'></ul><p>$" + newPizza.price + ".00 </li>");
-    toppingsListHtmlTags.forEach(function(toppingListHtmlTag) {
-      $("#toppingsList").append(toppingListHtmlTag);
-    })
+    allPrices.push(newPizza.price);
+    console.log(allPrices);
+    var totalPrice = 0
+    allPrices.forEach(function(price) {
+      totalPrice += price
+    });
+    console.log(totalPrice);
 
+    $("#pizzaOrder").show();
+    $("#pizzaList").append("<b>a " + newPizza.size + " pizza </b>with <ul class='toppingsList'></ul><p>$" + newPizza.price + ".00 <br>");
+    toppingsListHtmlTags.forEach(function(toppingListHtmlTag) {
+      $(".toppingsList:last-of-type").append(toppingListHtmlTag);
+    })
+    $("#orderSpan").text("Your total is $" + totalPrice + ".00");
     $("#selection").trigger("reset");
   })
 
