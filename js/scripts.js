@@ -79,7 +79,7 @@ $(document).ready(function() {
     console.log(toppingsListHtmlTags);
 
     $("#pizzaOrder").show();
-    $("#pizzaList").append("<li>" + newPizza.size + " pizza with <ul class='toppingsList'></ul><p>$" + newPizza.price + ".00 </li>");
+    $("#pizzaList").append("a " + newPizza.size + " pizza with <ul class='toppingsList'></ul><p>$" + newPizza.price + ".00 <br>");
     toppingsListHtmlTags.forEach(function(toppingListHtmlTag) {
       $(".toppingsList:last-of-type").append(toppingListHtmlTag);
     })
