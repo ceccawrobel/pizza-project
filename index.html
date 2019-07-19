@@ -15,29 +15,30 @@
     </div>
     <div class="container" id="pizzaSelection">
       <p>Choose your pizza</p>
+      <p>Small plain: $15 / Large plain: $20
       <form id="selection">
         <select id="pizzaSize">
           <option value="small">small - 12"</option>
           <option value="large">large - 18"</option>
         </select>
         <br>
-        <p class="menu">classic toppings<br>
+        <p class="menu">classic toppings - $1<br>
         <input type="checkbox" name="classic-topping" value="olive">black olives<br>
         <input type="checkbox" name="classic-topping" value="mushroom">mushrooms<br>
         <input type="checkbox" name="classic-topping" value="pepper">bell peppers<br>
         <input type="checkbox" name="classic-topping" value="onion">onions<br>
         </p>
-        <p class="menu">special toppings<br>
+        <p class="menu">special toppings - $2<br>
         <input type="checkbox" name="special-topping" value="artichoke">artichoke hearts<br>
-        <input type="checkbox" name="special-topping" value="pickledPepper">pickled peppers<br>
+        <input type="checkbox" name="special-topping" value="anchovy">anchovies<br>
         </p>
         <button type="submit" class="btn-warning">how much?</button>
       </form>
     </div>
     <div class="container" id="pizzaOrder">
-      <p>Here are the pizzas you chose: <br>
-        <ul id="pizzaList">
-        </ul>
+      <p id="pizzaList">Here are the pizzas you chose: <br>
+        <!-- <ul id="pizzaList">
+        </ul> -->
       </p>
       <form id="order">
         <!-- <label id="name">Name for your order</label>

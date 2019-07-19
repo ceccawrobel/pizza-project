@@ -22,7 +22,7 @@ Pizza.prototype.priceCalc = function() {
     thePrice += 20;
   }
   thePrice += this.classicToppings.length;
-  thePrice += this.specialToppings.length;
+  thePrice += (this.specialToppings.length * 2);
   return thePrice;
 }
 
