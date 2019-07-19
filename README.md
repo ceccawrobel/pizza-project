@@ -9,7 +9,7 @@ The purpose of this assignment was to utilize objects in javascript to capture c
 ---
 **instructions**
 
-Users select the size of the pizza for a starting price, and each topping selected is added into that price, with "special" toppings costing more than the others. After all pizzas are selected, the user can choose to place the order with their name.
+User selects the size of the pizza for a starting price, and each topping selected is added into that price, with "special" toppings costing more than the others. After all pizzas are selected, the user can choose to place the order with their name.
 
 ---
 **link**
